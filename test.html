@@ -7,62 +7,75 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
     <title>Test</title>
 </head>
+
 <body>
-    <div class="">
-        <div class="bg-white shadow-md ring-black/5 block">
-            <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-end">
-                <ul class="flex items-center gap-4">
-                    <li><span class=" font-medium text-slate-700 ">អំពី ស.វេស្ទើន</span></li>
-                    <li><span class=" font-medium text-slate-700 ">WU Login</span></li>
-                    <li><span class=" font-medium text-slate-700 ">Web Mail</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="relative bg-blue-900 md:z-[150] z-[180]">
-            <header class="relative mx-auto md:px-10 px-4 py-1 flex items-center justify-between z-[190]">
-                <a aria-current="page" href="/kh" class="router-link-active router-link-exact-active w-12 shrink-0">
-                    <img src="https://westernuniversity.edu.kh/_nuxt/logo_wu.DE_AS8aQ.webp" alt="wu-logo" class="w-full h-auto">
-                </a>
-                <ul class="flex items-center gap-6">
-                    <li class=" text-white font-bold"><a href="">អំពី ស.វេស្ទើន</a></li>
-                    <li class=" text-white font-bold"><a href="">មហាវិទ្យាល័យ</a></li>
-                    <li class=" text-white font-bold"><a href="">ថ្នាក់ក្រោយឧត្តម</a></li>
-                    <li class=" text-white font-bold"><a href="">ការិយាល័យ</a></li>
-                    <li class=" text-white font-bold"><a href="">សកម្មភាព</a></li>
-                    <li class=" text-white font-bold"><a href="">កិច្ចការនិស្សិត</a></li>
-                    <li class=" text-white font-bold"><a href="">ការចូលរៀន</a></li>
-                </ul>
-                <div class="flex items-center md:gap-20 gap-10 lg:gap-3">
-                    <a aria-current="page" href="/kh" class="router-link-active router-link-exact-active font-kh font-semibold text-white">
-                        <span class="fi fi-kh "></span>
-                        <span class="block text-sm ">ភាសាខ្មែរ</span>
-                    </a>
-                    <span class="text-slate-300">|</span>
-                    <a href="/en" class="font-en font-semibold text-slate-400 hover:text-slate-400">
-                        <span class="fi fi-gb"></span>
-                        <span class="block text-sm">English</span>
-                    </a>
-                
+    <main>
+        <header>
+            <div class="bg-white shadow-md ring-1 ring-black/5 lg:block md:block block">
+                <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-end ">
+                    <ul class="flex items-center gap-4 font-medium text-base ">
+                        <a href=""><span class="py-2">អំពី ស.វេស្ទើន</span></a>
+                        <a href=""><span class="py-2">WU Login</span></a>
+                        <a href=""><span class="py-2">Web Mail</span></a>
+                    </ul>
                 </div>
-
-            </header>
-            <body>
-                <section class="w-full h-[220px] sm:h-[300px] md:h-[515px] lg:h-[530px]">             
-                <img src="https://articleapp.westernuniversity.digital/storage/swiper/AF1chML5tUR7GOlIlKnNr5QUXiMQ6bHRi3byToIs.jpg" alt="web" class="w-full h-full select-none" draggable="false">  
-                </section>
-                <section class="py-8 lg:py-12 bg-white">
-                    <div class="lg:max-w-7xl md:w-11/12 w-11/12 mx-auto">
-                        <div class="flex items-center justify-between lg:max-w-7xl md:my-2 md:w-11/12 w-11/12 mx-auto">
-                            <h2 class="text-2xl md:text-3xl font-bold">
-                                <span class="text-blue-900">ព្រឹត្តិការណ៍</span>
-                                <span class="text-red-500 ml-2">ថ្មី</span>
-                            </h2>
-                        </div>
+            </div>
+            <nav class="relative bg-blue-900 ">
+                <div class="mx-auto md:px-10 px-4 py-2 flex items-center justify-between ">
+                    <a href="/kh" class="w-8 lg:w-12 shrink-0">
+                        <img src="https://westernuniversity.edu.kh/_nuxt/logo_wu.DE_AS8aQ.webp" alt="wu-logo" class="w-full h-auto">
+                    </a>
+                    <ul class="hidden lg:flex items-center gap-4 text-white font-bold">
+                        <li class=""><a href="">អំពី ស.វេស្ទើន</a></li>
+                        <li class=""><a href="">មហាវិទ្យាល័យ</a></li>
+                        <li class=""><a href="">ថ្នាក់ក្រោយឧត្តម</a></li>
+                        <li class=""><a href="">ការិយាល័យ</a></li>
+                        <li class=""><a href="">សកម្មភាព</a></li>
+                        <li class=""><a href="">កិច្ចការនិស្សិត</a></li>
+                        <li class=""><a href="">ការចូលរៀន</a></li>
+                    </ul>
+                    <div class="flex items-center gap-2 md:gap-3 lg:gap-5 [&>a]:font-semibold text-white ">
+                        <a href="" class="font-kh">
+                            <span class="fi fi-kh "></span>
+                            <span class="block md:text-sm hidden md:flex">ភាសាខ្មែរ</span>
+                        </a>
+                        <span class="text-slate-300">|</span>
+                        <a href="" class="font-en hover">
+                            <span class="fi fi-gb"></span>
+                            <span class="block text-sm hidden md:flex">English</span>
+                        </a>
                     </div>
+                </div>
+            </nav>
+        </header>
 
-                </section>
-            </body>
-        </div>
-    </div>
+        <section>
+            <hero class="w-full h-[220px] sm:h-[300px] md:h-[515px] lg:h-[530px]">             
+            <img src="https://articleapp.westernuniversity.digital/storage/swiper/AF1chML5tUR7GOlIlKnNr5QUXiMQ6bHRi3byToIs.jpg" alt="web" class="w-full h-full select-none" draggable="false">  
+            </hero>
+        </section>
+
+        <section>
+            <div class="py-6 lg:py-9 bg-white">
+                <div class="lg:max-w-7xl md:w-11/12 w-11/12 mx-auto">
+                    <div class="flex items-center justify-between ">
+                        <h2 class="text-2xl text-lg md:text-3xl font-bold">
+                            <span class="text-blue-900">ព្រឹត្តិការណ៍</span>
+                            <span class="text-red-500 ml-2">ថ្មី</span>
+                        </h2>
+                    </div>
+                </div>
+            </div> 
+        </section>
+        
+        <section>
+        </section>
+        
+        <section>
+        </section>
+        
+        <section>
+        </section>
+    </main>
 </body>
 </html>
