@@ -6,10 +6,10 @@
 
 <h3 align="left">Languages and Tools:</h3>
 <p align="left"> 
-  <a href="https://html.com/" target="_blank" rel="noreferrer"> 
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/330px-HTML5_logo_and_wordmark.svg.png" alt="html" width="40" height="40" /> 
-  </a> 
+  <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> 
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> 
+  </a>
   <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> 
-    <img src="https://tailwindcss.com/_next/static/media/tailwindcss-logotype-white.541819ec.svg" alt="tailwind" width="40" height="40" class"item-center"/> 
+      <img src="https://tailwindcss.com/_next/static/media/tailwindcss-logotype-white.541819ec.svg" alt="tailwind" class="w-10 h-10"/>
   </a> 
 </p>
