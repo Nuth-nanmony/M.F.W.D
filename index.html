@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/primeicons/primeicons.css">
     <title>Test</title>
 </head>
 
@@ -14,9 +15,9 @@
             <div class="bg-white shadow-md ring-1 ring-black/5 lg:block md:block block">
                 <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-end ">
                     <ul class="flex items-center gap-4 font-medium text-base ">
-                        <a href=""><span class="py-2">អំពី ស.វេស្ទើន</span></a>
-                        <a href=""><span class="py-2">WU Login</span></a>
-                        <a href=""><span class="py-2">Web Mail</span></a>
+                        <li><a href=""><span class="py-2">អំពី ស.វេស្ទើន</span></a></li>
+                        <li><a href=""><span class="py-2">WU Login</span></a></li>
+                        <li><a href=""><span class="py-2">Web Mail</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -37,12 +38,12 @@
                     <div class="flex items-center gap-2 md:gap-3 lg:gap-5 [&>a]:font-semibold text-white ">
                         <a href="" class="font-kh">
                             <span class="fi fi-kh "></span>
-                            <span class="block md:text-sm hidden md:flex">ភាសាខ្មែរ</span>
+                            <span class=" md:text-sm hidden md:flex">ភាសាខ្មែរ</span>
                         </a>
                         <span class="text-slate-300">|</span>
                         <a href="" class="font-en hover">
                             <span class="fi fi-gb"></span>
-                            <span class="block text-sm hidden md:flex">English</span>
+                            <span class=" text-sm hidden md:flex">English</span>
                         </a>
                     </div>
                 </div>
@@ -50,32 +51,150 @@
         </header>
 
         <section>
-            <hero class="w-full h-[220px] sm:h-[300px] md:h-[515px] lg:h-[530px]">             
-            <img src="https://articleapp.westernuniversity.digital/storage/swiper/AF1chML5tUR7GOlIlKnNr5QUXiMQ6bHRi3byToIs.jpg" alt="web" class="w-full h-full select-none" draggable="false">  
-            </hero>
+            <section class="w-full h-[220px] sm:h-[300px] md:h-[515px] lg:h-[530px]">             
+            <img src="https://articleapp.westernuniversity.digital/storage/swiper/AF1chML5tUR7GOlIlKnNr5QUXiMQ6bHRi3byToIs.jpg" alt="web" class="w-full h-full object-cover" draggable="false">  
+            </section>
         </section>
 
-        <section>
-            <div class="py-6 lg:py-9 bg-white">
-                <div class="lg:max-w-7xl md:w-11/12 w-11/12 mx-auto">
-                    <div class="flex items-center justify-between ">
-                        <h2 class="text-2xl text-lg md:text-3xl font-bold">
-                            <span class="text-blue-900">ព្រឹត្តិការណ៍</span>
-                            <span class="text-red-500 ml-2">ថ្មី</span>
-                        </h2>
+        <section class="py-6 lg:py-9 bg-white">
+            <div class="lg:max-w-360 md:w-11/12 w-11/12 mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+                    <div class="lg:col-span-2 space-y-6">
+
+                        <div class="flex items-center justify-between">
+                            <div class="text-2xl md:text-3xl font-bold">
+                                <span class="text-blue-900">ព្រឹត្តិការណ៍</span>
+                                <span class="text-red-500 ml-2">ថ្មី</span>
+                            </div>
+
+                            <div class="flex items-center gap-3">
+                                <button class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm hover:bg-gray-100 transition">
+                                    <i class="pi pi-angle-left text-gray-600"></i>
+                                </button>
+
+                                <button class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm hover:bg-gray-100 transition">
+                                    <i class="pi pi-angle-right text-gray-600"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                            <div class="bg-slate-100 rounded-lg group overflow-hidden hover:shadow-xl transition-shadow duration-300 ">
+                                <div class="relative h-72 overflow-hidden">
+                                    <img src="https://articleapp.westernuniversity.digital/storage/article/qIENM7HPlYePvMzHYOBQWcm04Y7QBh7dd1nI4iq3.jpg" class="w-full h-full object-cover">
+                                    <div class="absolute top-5 left-5 ">
+                                        <span class="relative inline-flex items-center bg-blue-950 text-white text-xs font-bold px-5 py-2 rounded-full ">
+                                            Event
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="p-4 font-bold">
+                                    <h2 class="text-sm md:text[16px] lg:text-xl font-semibold line-clamp-1 mb-2 select-none flex">Replication Workshop with CHAIn</h2>
+                                    <p class="text-sm text-gray-600 line-clamp-2 overflow-hidden flex" >Shaping Tomorrow’s Universities: Leadership, Vision, and Global Communication</p>
+                                </div>
+                            </div>
+
+
+                            <div class="rounded-lg overflow-hidden relative group bg-slate-100">
+                                <img src="https://articleapp.westernuniversity.digital/storage/article/kh4t100OXObSmxVTFxzFz8fenFTCYeOFl4NNYhBH.jpg" 
+                                    class="w-full h-72 object-cover">
+                                <div class="absolute top-5 left-5">
+                                    <span class="inline-flex items-center bg-blue-950 text-white text-xs font-bold px-5 py-2 rounded-full">
+                                        Event
+                                    </span>
+                                </div>
+                                <div class="p-4 font-bold">
+                                    <h2 class="text-sm md:text[16px] lg:text-lg  font-semibold line-clamp-1 mb-2 select-none flex">រីករាយទិវាអន្តរជាតិនារី ៨មីនា! 🌸    </h2>
+                                    <p class="text-sm text-gray-600 line-clamp-2 overflow-hidden flex">ក្នុងឱកាសដ៏វិសេសវិសាលនេះ ថ្នាក់ដឹកនាំសាកលវិទ្យាល័យវេស្ទើន</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-lg lg:text-3xl font-bold">
+                                <span class="text-blue-950">ជំនាញ</span>
+                                <span class="text-red-600">សំខាន់ៗ</span>
+                            </h2>
+                            <div class="flex gap-2">
+                                <button class="w-10 h-10 rounded-full border items-center border-gray-200 bg-white shadow-sm hover:bg-gray-100 transition">
+                                    <i class="pi pi-angle-up"></i>
+                                </button>
+                                <button class="w-10 h-10 rounded-full border items-center border-gray-200 bg-white shadow-sm hover:bg-gray-100 transition">
+                                    <i class="pi pi-angle-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="h-[500px] border border-gray-100 rounded-lg overflow-hidden shadow-sm">
+                                <div class="overflow-hidden h-full">
+                                    <div class="flex flex-col h-full">
+                                        <div class="relative overflow-hidden select-none bg-linear-to-br from-gray-100 to-gray-200 h-full w-full">
+                                            <img src="https://westernuniversity.edu.kh/_nuxt/2.DAUSALzB.webp" alt="" class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div> 
         </section>
         
-        <section>
-        </section>
-        
-        <section>
-        </section>
-        
-        <section>
-        </section>
+
+
     </main>
 </body>
+<footer class="relative overflow-hidden mt-auto border">
+    <div class="lg:w-12/12 md:w-11/12 w-11/12 mx-auto">
+        <div class="py-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex items-start">
+                    <a href="" class="inline-flex items-center rounded-2xl p-2 border border-transparent transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-gray-300 hover:-translate-y-1 focus:ring-2 focus:ring-blue-500/50">
+                        <img src="https://westernuniversity.edu.kh/_nuxt/logo.WwqhiF4K.webp" alt="" class="h-16 w-auto">
+                    </a>
+                </div>
+                <div>
+                    <h4 class="text-blue-950 font-semibold text-2xl">អំពី</h4>
+                    <ul class="mt-3 space-y-2 text-sm font [&>li>a]:py-1.5 px-2 md:text-lg text-gray-500">
+                        <li><a href="" >ប្រវត្តិសាកលវិទ្យាល័យ វេស្ទើន</a></li>
+                        <li><a href="" >ចក្ខុវិស័យ បេសកកម្ម និងគោលដៅ</a></li>
+                        <li><a href="" >រចនាសម្ព័ន្ធអង្គការ</a></li>
+                        <li><a href="" >ការទទួលស្គាល់</a></li>
+                        <li><a href="" >សារស្វាគមន៍</a></li>
+                        <li><a href="" >ទំនាក់ទំនង និងទីតាំង</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-blue-950 font-semibold text-2xl">ទំនាក់ទំនង</h4>
+                    <ul class="mt-3 space-y-3 text-sm text-gray-500 md:text-lg">
+                        <li class="flex items-start gap-3">
+                            <i class="pi pi-phone text-wu-blue mt-0.5"></i>
+                            <span>
+                                <span class="text-wu-gray/70">ទូរស័ព្ទ:</span> +855 96 8000 111
+                            </span>
+                        </li>
+                        <li class="flex items-start gap-3"><i class="pi pi-envelope text-wu-blue mt-0.5"></i>
+                            <span>
+                                <span class="text-wu-gray/70">អ៊ីមែល:</span>
+                                <a class="wu-link inline-flex ml-1" href="mailto:info_wu@westernuniversity.edu.kh"> info_wu@westernuniversity.edu.kh </a>
+                            </span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="pi pi-map-marker text-wu-blue mt-0.5"></i>
+                            <span>
+                                <span class="text-wu-gray/70">អាសយដ្ឋាន:</span> លេខ 145, ផ្លូវ 608 ជ្រុងផ្លូវ 313, សង្កាត់បឹងកក់ 2, ខណ្ឌទួលគោក, រាជធានីភ្នំពេញ, កម្ពុជា
+                            </span>
+                        </li>
+                        <div class="mt-4 w-full h-56 rounded-2xl overflow-hidden border border-white/40 shadow-sm bg-wu-blue/5">
+                            <iframe class="w-full h-full" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3193.71741249438!2d104.88886260644433!3d11.531659477291468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310951003600014f%3A0x708a7041a3a576c2!2sWestern%20University%20-%20Steung%20Mean%20Chey!5e0!3m2!1sen!2skh!4v1774195499810!5m2!1sen!2skh" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" loading="lazy"></iframe>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 </html>
