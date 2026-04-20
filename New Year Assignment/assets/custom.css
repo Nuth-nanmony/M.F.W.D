@@ -1,107 +1,138 @@
-@import "tailwindcss";
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
+
 body {
-  font-family: "DM Mono", monospace;
-  background: #f5f3ee;
+  font-family: 'DM Mono', monospace;
+  background: #F5F3EE;
   color: #1a1a18;
 }
-h1,
-h2,
-h3,
-h4 {
-  font-family: "Cormorant Garamond", serif;
+
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', serif;
 }
-.page {
-  display: none;
-}
-.page.active {
-  display: block;
-}
-input:focus,
-select:focus {
+
+/* ── Pages (SPA routing on index.html) ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── Inputs ── */
+input:focus, select:focus {
   outline: 1px solid #1a1a18;
   outline-offset: -1px;
 }
-.product-card:hover .product-img {
-  transform: scale(1.04);
-}
-.product-img {
-  transition: transform 0.5s ease;
-}
+
+/* ── Buttons ── */
 .btn-primary {
   background: #1a1a18;
-  color: #f5f3ee;
+  color: #F5F3EE;
   letter-spacing: 0.08em;
+  cursor: pointer;
 }
-.btn-primary:hover {
-  background: #333330;
-}
+.btn-primary:hover { background: #333330; }
+
 .btn-outline {
   border: 1px solid #1a1a18;
   color: #1a1a18;
   letter-spacing: 0.08em;
+  background: transparent;
+  cursor: pointer;
 }
-.btn-outline:hover {
-  background: #1a1a18;
-  color: #f5f3ee;
-}
-.tag {
-  font-size: 10px;
-  letter-spacing: 0.12em;
-}
-.nav-link {
-  font-size: 11px;
-  letter-spacing: 0.1em;
-}
+.btn-outline:hover { background: #1a1a18; color: #F5F3EE; }
+
+/* ── Typography helpers ── */
+.tag      { font-size: 10px; letter-spacing: 0.12em; }
+.nav-link { font-size: 11px; letter-spacing: 0.1em; }
+
+/* ── Product cards ── */
+.product-img { transition: transform 0.5s ease; }
+.product-card:hover .product-img { transform: scale(1.04); }
+
+/* ── Cart badge ── */
+.cart-badge { font-size: 9px; min-width: 16px; height: 16px; }
+
+/* ── Animations ── */
 .fade-in {
   animation: fadeIn 0.4s ease forwards;
 }
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-.cart-badge {
-  font-size: 9px;
-  min-width: 16px;
-  height: 16px;
-}
-.step-active {
-  border-bottom: 2px solid #1a1a18;
-}
-.step-done {
-  color: #888;
-}
-input[type="radio"]:checked + label {
-  border-color: #1a1a18;
-  background: #f5f3ee;
-}
+
+/* ── Product detail ── */
 .swatch {
-  width: 22px;
-  height: 22px;
+  width: 22px; height: 22px;
   border-radius: 50%;
   cursor: pointer;
   transition: box-shadow 0.2s;
 }
 .swatch.selected {
-  box-shadow:
-    0 0 0 2px #f5f3ee,
-    0 0 0 3.5px #1a1a18;
+  box-shadow: 0 0 0 2px #F5F3EE, 0 0 0 3.5px #1a1a18;
 }
-.size-btn.selected {
-  background: #1a1a18;
-  color: #f5f3ee;
+.size-btn.selected { background: #1a1a18; color: #F5F3EE; }
+
+/* ── Checkout step indicator ── */
+.step-active { border-bottom: 2px solid #1a1a18; }
+.step-done   { color: #888; }
+
+/* ── Bag drawer ── */
+#bag-drawer {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
-::-webkit-scrollbar {
-  width: 4px;
+#bag-drawer.bag-open    { transform: translateX(0); }
+#bag-overlay.bag-open   { opacity: 1; pointer-events: all; }
+
+.bag-item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid #f0ede7;
+  animation: bagSlideIn 0.25s ease;
 }
-::-webkit-scrollbar-thumb {
-  background: #ccc;
+@keyframes bagSlideIn {
+  from { opacity: 0; transform: translateX(10px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
+
+.bag-item-img {
+  width: 72px; height: 90px;
+  object-fit: cover;
+  background: #E8E5DE;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.bag-qty-btn {
+  width: 30px; height: 30px;
+  border: 1px solid #e0ddd7;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.15s;
+  background: transparent;
+  color: #1a1a18;
+  line-height: 1;
+}
+.bag-qty-btn:hover { border-color: #1a1a18; background: #1a1a18; color: #F5F3EE; }
+
+.bag-remove-btn {
+  font-size: 10px; color: #bbb;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  cursor: pointer; text-decoration: underline;
+  transition: color 0.2s;
+  background: none; border: none;
+  font-family: 'DM Mono', monospace;
+  padding: 0;
+}
+.bag-remove-btn:hover { color: #c0392b; }
+
+.bag-color-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 3px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: #ccc; }

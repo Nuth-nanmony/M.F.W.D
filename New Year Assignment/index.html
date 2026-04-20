@@ -1,655 +1,395 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>MONO — Store</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/custom.css">
-</head>
-<body class="min-h-screen">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MONO — Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/custom.css" />
+  </head>
+  <body class="min-h-screen">
 
-<!-- NAV -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-[#F5F3EE] border-b border-[#e0ddd7]">
-  <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-    <button onclick="goTo('home')" class="font-['Cormorant_Garamond'] text-2xl font-light tracking-widest">MONO</button>
-    <div class="hidden md:flex items-center gap-8">
-      <button onclick="goTo('home')" class="nav-link uppercase hover:opacity-60 transition-opacity">Shop</button>
-      <button class="nav-link uppercase hover:opacity-60 transition-opacity">Collections</button>
-      <button class="nav-link uppercase hover:opacity-60 transition-opacity">About</button>
-    </div>
-    <div class="flex items-center gap-5">
-      <button class="nav-link uppercase hover:opacity-60 transition-opacity hidden sm:block">Search</button>
-      <button onclick="goTo('home')" class="relative flex items-center gap-1.5 nav-link uppercase hover:opacity-60 transition-opacity">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        <span id="cart-count" class="cart-badge bg-[#1a1a18] text-[#F5F3EE] rounded-full flex items-center justify-center font-mono">0</span>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<!-- ═══════════════════════════════════════ HOME PAGE ═══ -->
-<div id="page-home" class="page active pt-14">
-  <div class="fade-in">
-    <!-- Hero -->
-    <div class="relative h-[70vh] bg-[#2a2925] overflow-hidden flex items-end">
-      <div class="absolute inset-0 opacity-30" style="background: repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,0.03) 40px,rgba(255,255,255,0.03) 80px)"></div>
-      <div class="absolute inset-0 flex items-center justify-center">
-        <div class="text-center text-[#F5F3EE]">
-          <p class="tag uppercase tracking-[0.3em] opacity-60 mb-4">New Season</p>
-          <h1 class="text-7xl md:text-9xl font-light leading-none tracking-tight mb-6">Less.<br>Better.</h1>
-          <p class="text-sm tracking-widest opacity-50 mb-10 font-['DM_Mono']">Curated essentials for modern living</p>
-          <button onclick="scrollToProducts()" class="btn-primary px-10 py-3 text-xs uppercase transition-all hover:px-14">Explore</button>
+    <!-- NAV-->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#F5F3EE] border-b border-[#e0ddd7]">
+      <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+        <button onclick="goTo('home')" class="font-['Cormorant_Garamond'] text-2xl font-light tracking-widest">MONO</button>
+        <div class="hidden md:flex items-center gap-8">
+          <button onclick="goTo('home')" class="nav-link uppercase hover:opacity-60 transition-opacity">Shop</button>
+          <button class="nav-link uppercase hover:opacity-60 transition-opacity">Collections</button>
+          <button class="nav-link uppercase hover:opacity-60 transition-opacity">About Us</button>
+        </div>
+        <div class="flex items-center gap-5">
+          <button class="nav-link uppercase hover:opacity-60 transition-opacity hidden sm:block">Search</button>
+          <button onclick="openBag()" class="relative flex items-center gap-1.5 nav-link uppercase hover:opacity-60 transition-opacity">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            <span id="cart-count" class="cart-badge bg-[#1a1a18] text-[#F5F3EE] rounded-full flex items-center justify-center font-mono">0</span>
+          </button>
         </div>
       </div>
-      <div class="relative z-10 w-full pb-8 px-8 flex justify-between items-end opacity-40">
-        <span class="text-[#F5F3EE] text-xs tracking-widest font-['DM_Mono']">SS 2025</span>
-        <span class="text-[#F5F3EE] text-xs tracking-widest font-['DM_Mono']">Free shipping over $150</span>
-      </div>
-    </div>
+    </nav>
 
-    <!-- Filter bar -->
-    <div class="border-b border-[#e0ddd7] bg-[#F5F3EE] sticky top-14 z-40">
-      <div class="max-w-6xl mx-auto px-6 h-11 flex items-center gap-6 overflow-x-auto">
-        <span class="tag uppercase tracking-widest text-[#888] whitespace-nowrap">Filter:</span>
-        <button onclick="filterProducts('all')" id="filter-all" class="tag uppercase tracking-widest hover:opacity-60 whitespace-nowrap border-b-2 border-[#1a1a18] pb-0.5">All</button>
-        <button onclick="filterProducts('apparel')" id="filter-apparel" class="tag uppercase tracking-widest hover:opacity-60 whitespace-nowrap text-[#888]">Apparel</button>
-        <button onclick="filterProducts('accessories')" id="filter-accessories" class="tag uppercase tracking-widest hover:opacity-60 whitespace-nowrap text-[#888]">Accessories</button>
-        <button onclick="filterProducts('home')" id="filter-home" class="tag uppercase tracking-widest hover:opacity-60 whitespace-nowrap text-[#888]">Home</button>
-      </div>
-    </div>
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page active pt-14">
+      <div class="fade-in">
 
-    <!-- Products -->
-    <div id="products-grid" class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
-    </div>
-
-    <!-- Footer -->
-    <footer class="border-t border-[#e0ddd7] mt-16 bg-[#2a2925] text-[#F5F3EE]">
-      <div class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-8">
-        <div>
-          <h3 class="text-2xl font-light tracking-widest mb-3">MONO</h3>
-          <p class="text-xs opacity-40 leading-relaxed font-['DM_Mono']">Timeless objects for<br>considered living.</p>
-        </div>
-        <div>
-          <p class="tag uppercase tracking-widest opacity-40 mb-3">Shop</p>
-          <div class="flex flex-col gap-2 text-xs opacity-70 font-['DM_Mono']">
-            <a class="hover:opacity-100 cursor-pointer">New Arrivals</a>
-            <a class="hover:opacity-100 cursor-pointer">All Products</a>
-            <a class="hover:opacity-100 cursor-pointer">Sale</a>
+        <!-- Hero -->
+        <div class="relative h-[70vh] bg-[#2a2925] overflow-hidden flex items-end">
+          <div class="absolute inset-0 opacity-30" style="background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,0.03) 40px,rgba(255,255,255,0.03) 80px);"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="text-center text-[#F5F3EE]">
+              <p class="tag uppercase tracking-[0.3em] opacity-60 mb-4">New Season</p>
+              <h1 class="text-7xl md:text-9xl font-light leading-none tracking-tight mb-6">Less.<br/>Better.</h1>
+              <p class="text-sm tracking-widest opacity-50 mb-10 font-['DM_Mono']">Your essentials for modern living</p>
+              <button onclick="scrollToProducts()" class="btn-primary px-10 py-3 text-xs uppercase transition-all hover:px-14">Explore</button>
+            </div>
+          </div>
+          <div class="relative z-10 w-full pb-8 px-8 flex justify-between items-end opacity-60">
+            <span class="text-[#F5F3EE] text-xs tracking-widest font-['DM_Mono']">Nimo</span>
+            <span class="text-[#F5F3EE] text-xs tracking-widest font-['DM_Mono']">Free shipping over $150</span>
           </div>
         </div>
-        <div>
-          <p class="tag uppercase tracking-widest opacity-40 mb-3">Help</p>
-          <div class="flex flex-col gap-2 text-xs opacity-70 font-['DM_Mono']">
-            <a class="hover:opacity-100 cursor-pointer">Shipping</a>
-            <a class="hover:opacity-100 cursor-pointer">Returns</a>
-            <a class="hover:opacity-100 cursor-pointer">Contact</a>
+
+        <!-- Filter bar -->
+        <div class="border-b border-[#e0ddd7] bg-[#F5F3EE] sticky top-14 z-40">
+          <div class="max-w-6xl mx-auto px-6 h-11 flex items-center gap-6 overflow-x-auto">
+            <span class="tag uppercase tracking-widest text-[#888] whitespace-nowrap">Filter:</span>
+            <button onclick="filterProducts('all')"         id="filter-all"         class="tag uppercase tracking-widest hover:opacity-60 whitespace-nowrap border-b-2 border-[#1a1a18] pb-0.5">All</button>
+            <button onclick="filterProducts('apparel')"     id="filter-apparel"     class="tag uppercase tracking-widest hover:opacity-60 whitespace-nowrap text-[#888]">Apparel</button>
+            <button onclick="filterProducts('accessories')" id="filter-accessories" class="tag uppercase tracking-widest hover:opacity-60 whitespace-nowrap text-[#888]">Accessories</button>
+            <button onclick="filterProducts('home')"        id="filter-home"        class="tag uppercase tracking-widest hover:opacity-60 whitespace-nowrap text-[#888]">Home</button>
           </div>
         </div>
-        <div>
-          <p class="tag uppercase tracking-widest opacity-40 mb-3">Newsletter</p>
-          <div class="flex mt-1">
-            <input type="email" placeholder="your@email.com" class="bg-transparent border-b border-[#F5F3EE]/30 text-xs py-2 pr-4 flex-1 placeholder-white/30 text-white/80 font-['DM_Mono'] focus:outline-none focus:border-white/70"/>
-            <button class="text-xs border-b border-[#F5F3EE]/30 px-3 text-white/60 hover:text-white/100 font-['DM_Mono']">→</button>
-          </div>
-        </div>
-      </div>
-      <div class="border-t border-white/10 py-4 text-center text-xs opacity-30 font-['DM_Mono']">© 2025 MONO. All rights reserved.</div>
-    </footer>
-  </div>
-</div>
 
-<!-- ═══════════════════════════════════════ PRODUCT DETAIL ═══ -->
-<div id="page-detail" class="page pt-14">
-  <div class="fade-in max-w-6xl mx-auto px-6 py-10">
-    <!-- Breadcrumb -->
-    <div class="flex items-center gap-2 text-xs font-['DM_Mono'] text-[#888] mb-8">
-      <button onclick="goTo('home')" class="hover:text-[#1a1a18] transition-colors">Shop</button>
-      <span>/</span>
-      <span id="detail-category" class="uppercase"></span>
-      <span>/</span>
-      <span id="detail-breadcrumb" class="text-[#1a1a18]"></span>
-    </div>
+        <!-- Products grid -->
+        <div id="products-grid" class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10"></div>
 
-    <div class="grid md:grid-cols-2 gap-12 lg:gap-20">
-      <!-- Images -->
-      <div class="space-y-3">
-        <div class="aspect-[3/4] bg-[#E8E5DE] overflow-hidden rounded-sm">
-          <img id="detail-main-img" class="w-full h-full object-cover product-img" alt="Product"/>
-        </div>
-        <div class="grid grid-cols-3 gap-3">
-          <div id="thumb-0" onclick="setThumb(0)" class="aspect-[3/4] bg-[#E8E5DE] overflow-hidden cursor-pointer border-2 border-[#1a1a18] rounded-sm"><img id="detail-thumb-0" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt=""/></div>
-          <div id="thumb-1" onclick="setThumb(1)" class="aspect-[3/4] bg-[#E8E5DE] overflow-hidden cursor-pointer border border-transparent rounded-sm"><img id="detail-thumb-1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt=""/></div>
-          <div id="thumb-2" onclick="setThumb(2)" class="aspect-[3/4] bg-[#E8E5DE] overflow-hidden cursor-pointer border border-transparent rounded-sm"><img id="detail-thumb-2" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt=""/></div>
-        </div>
-      </div>
-
-      <!-- Info -->
-      <div class="flex flex-col justify-start pt-2">
-        <p id="detail-tag" class="tag uppercase tracking-[0.25em] text-[#888] mb-2"></p>
-        <h2 id="detail-name" class="text-4xl md:text-5xl font-light leading-tight mb-2"></h2>
-        <p id="detail-price" class="text-2xl font-['DM_Mono'] font-light mb-6"></p>
-        <p id="detail-desc" class="text-sm text-[#555] leading-relaxed font-['DM_Mono'] mb-8 border-l-2 border-[#e0ddd7] pl-4"></p>
-
-        <!-- Colors -->
-        <div id="color-section" class="mb-6">
-          <p class="tag uppercase tracking-widest text-[#888] mb-3">Color — <span id="selected-color" class="text-[#1a1a18]"></span></p>
-          <div id="color-swatches" class="flex gap-3"></div>
-        </div>
-
-        <!-- Sizes -->
-        <div id="size-section" class="mb-8">
-          <div class="flex justify-between items-center mb-3">
-            <p class="tag uppercase tracking-widest text-[#888]">Size</p>
-            <button class="tag uppercase tracking-widest text-[#888] underline hover:text-[#1a1a18]">Size Guide</button>
-          </div>
-          <div id="size-buttons" class="flex gap-2 flex-wrap"></div>
-        </div>
-
-        <!-- Qty + Add -->
-        <div class="flex gap-3 mb-6">
-          <div class="flex items-center border border-[#1a1a18] rounded-sm">
-            <button onclick="changeQty(-1)" class="px-4 py-3 text-lg hover:bg-[#1a1a18] hover:text-[#F5F3EE] transition-colors">−</button>
-            <span id="qty-display" class="px-5 text-sm font-['DM_Mono']">1</span>
-            <button onclick="changeQty(1)" class="px-4 py-3 text-lg hover:bg-[#1a1a18] hover:text-[#F5F3EE] transition-colors">+</button>
-          </div>
-          <button onclick="addToCart()" class="flex-1 btn-primary py-3 text-xs uppercase transition-all hover:opacity-90 rounded-sm">Add to Bag</button>
-        </div>
-        <button onclick="goToPayment()" class="w-full btn-outline py-3 text-xs uppercase transition-all rounded-sm">Buy Now</button>
-
-        <!-- Meta -->
-        <div class="mt-10 pt-8 border-t border-[#e0ddd7] grid grid-cols-3 gap-4 text-center">
-          <div><p class="tag uppercase tracking-wider text-[#888] mb-1">Material</p><p id="detail-material" class="text-xs font-['DM_Mono']"></p></div>
-          <div><p class="tag uppercase tracking-wider text-[#888] mb-1">Origin</p><p id="detail-origin" class="text-xs font-['DM_Mono']"></p></div>
-          <div><p class="tag uppercase tracking-wider text-[#888] mb-1">Care</p><p id="detail-care" class="text-xs font-['DM_Mono']"></p></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Related -->
-    <div class="mt-20">
-      <p class="tag uppercase tracking-[0.25em] text-[#888] mb-6">You may also like</p>
-      <div id="related-grid" class="grid grid-cols-2 md:grid-cols-4 gap-5"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════ PAYMENT PAGE ═══ -->
-<div id="page-payment" class="page pt-14">
-  <div class="fade-in max-w-5xl mx-auto px-6 py-10">
-    <!-- Steps -->
-    <div class="flex items-center justify-center gap-8 mb-12">
-      <div id="step-1" class="flex flex-col items-center gap-1 step-active pb-2 px-1">
-        <span class="text-xs font-['DM_Mono']">01</span>
-        <span class="tag uppercase tracking-widest">Shipping</span>
-      </div>
-      <div class="w-12 h-px bg-[#e0ddd7]"></div>
-      <div id="step-2" class="flex flex-col items-center gap-1 pb-2 px-1 step-done">
-        <span class="text-xs font-['DM_Mono']">02</span>
-        <span class="tag uppercase tracking-widest">Payment</span>
-      </div>
-      <div class="w-12 h-px bg-[#e0ddd7]"></div>
-      <div id="step-3" class="flex flex-col items-center gap-1 pb-2 px-1 step-done">
-        <span class="text-xs font-['DM_Mono']">03</span>
-        <span class="tag uppercase tracking-widest">Review</span>
-      </div>
-    </div>
-
-    <div class="grid md:grid-cols-5 gap-10 lg:gap-16">
-      <!-- Left: Forms -->
-      <div class="md:col-span-3 space-y-8" id="checkout-form">
-
-        <!-- Shipping step -->
-        <div id="shipping-form">
-          <h3 class="text-2xl font-light mb-6">Shipping details</h3>
-          <div class="space-y-4">
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <label class="tag uppercase tracking-widest text-[#888] block mb-2">First name</label>
-                <input type="text" class="w-full border border-[#e0ddd7] bg-transparent px-4 py-3 text-sm font-['DM_Mono'] rounded-sm"/>
-              </div>
-              <div>
-                <label class="tag uppercase tracking-widest text-[#888] block mb-2">Last name</label>
-                <input type="text" class="w-full border border-[#e0ddd7] bg-transparent px-4 py-3 text-sm font-['DM_Mono'] rounded-sm"/>
+        <!-- Footer -->
+        <footer class="border-t border-[#e0ddd7] mt-16 bg-[#2a2925] text-[#F5F3EE]">
+          <div class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-8">
+            <div>
+              <h3 class="text-2xl font-light tracking-widest mb-3">MONO</h3>
+              <p class="text-xs opacity-40 leading-relaxed font-['DM_Mono']">Timeless objects for<br/>considered living.</p>
+            </div>
+            <div>
+              <p class="tag uppercase tracking-widest opacity-40 mb-3">Shop</p>
+              <div class="flex flex-col gap-2 text-xs opacity-70 font-['DM_Mono']">
+                <a class="hover:opacity-100 cursor-pointer">New Arrivals</a>
+                <a class="hover:opacity-100 cursor-pointer">All Products</a>
+                <a class="hover:opacity-100 cursor-pointer">Sale</a>
               </div>
             </div>
             <div>
-              <label class="tag uppercase tracking-widest text-[#888] block mb-2">Email</label>
-              <input type="email" class="w-full border border-[#e0ddd7] bg-transparent px-4 py-3 text-sm font-['DM_Mono'] rounded-sm"/>
-            </div>
-            <div>
-              <label class="tag uppercase tracking-widest text-[#888] block mb-2">Address</label>
-              <input type="text" class="w-full border border-[#e0ddd7] bg-transparent px-4 py-3 text-sm font-['DM_Mono'] rounded-sm"/>
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <label class="tag uppercase tracking-widest text-[#888] block mb-2">City</label>
-                <input type="text" class="w-full border border-[#e0ddd7] bg-transparent px-4 py-3 text-sm font-['DM_Mono'] rounded-sm"/>
-              </div>
-              <div>
-                <label class="tag uppercase tracking-widest text-[#888] block mb-2">Postal code</label>
-                <input type="text" class="w-full border border-[#e0ddd7] bg-transparent px-4 py-3 text-sm font-['DM_Mono'] rounded-sm"/>
+              <p class="tag uppercase tracking-widest opacity-40 mb-3">Help</p>
+              <div class="flex flex-col gap-2 text-xs opacity-70 font-['DM_Mono']">
+                <a class="hover:opacity-100 cursor-pointer">Shipping</a>
+                <a class="hover:opacity-100 cursor-pointer">Returns</a>
+                <a class="hover:opacity-100 cursor-pointer">Contact</a>
               </div>
             </div>
             <div>
-              <label class="tag uppercase tracking-widest text-[#888] block mb-2">Country</label>
-              <select class="w-full border border-[#e0ddd7] bg-[#F5F3EE] px-4 py-3 text-sm font-['DM_Mono'] rounded-sm">
-                <option>United States</option>
-                <option>United Kingdom</option>
-                <option>France</option>
-                <option>Germany</option>
-                <option>Japan</option>
-                <option>Australia</option>
-                <option>Cambodia</option>
-              </select>
+              <p class="tag uppercase tracking-widest opacity-40 mb-3">Newsletter</p>
+              <div class="flex mt-1">
+                <input type="email" placeholder="your@email.com" class="bg-transparent border-b border-[#F5F3EE]/30 text-xs py-2 pr-4 flex-1 placeholder-white/30 text-white/80 font-['DM_Mono'] focus:outline-none focus:border-white/70"/>
+                <button class="text-xs border-b border-[#F5F3EE]/30 px-3 text-white/60 hover:text-white font-['DM_Mono']">→</button>
+              </div>
             </div>
           </div>
-          <!-- Shipping options -->
-          <div class="mt-6">
-            <p class="tag uppercase tracking-widest text-[#888] mb-4">Shipping method</p>
-            <div class="space-y-2">
-              <label class="flex items-center justify-between border border-[#1a1a18] rounded-sm px-4 py-3 cursor-pointer bg-[#F5F3EE]">
-                <div class="flex items-center gap-3">
-                  <input type="radio" name="shipping" checked class="accent-[#1a1a18]"/>
-                  <div>
-                    <p class="text-sm font-['DM_Mono']">Standard Shipping</p>
-                    <p class="text-xs text-[#888] font-['DM_Mono']">5–7 business days</p>
-                  </div>
-                </div>
-                <span class="text-sm font-['DM_Mono']">$8.00</span>
-              </label>
-              <label class="flex items-center justify-between border border-[#e0ddd7] rounded-sm px-4 py-3 cursor-pointer hover:border-[#1a1a18] transition-colors">
-                <div class="flex items-center gap-3">
-                  <input type="radio" name="shipping" class="accent-[#1a1a18]"/>
-                  <div>
-                    <p class="text-sm font-['DM_Mono']">Express Shipping</p>
-                    <p class="text-xs text-[#888] font-['DM_Mono']">2–3 business days</p>
-                  </div>
-                </div>
-                <span class="text-sm font-['DM_Mono']">$18.00</span>
-              </label>
-              <label class="flex items-center justify-between border border-[#e0ddd7] rounded-sm px-4 py-3 cursor-pointer hover:border-[#1a1a18] transition-colors">
-                <div class="flex items-center gap-3">
-                  <input type="radio" name="shipping" class="accent-[#1a1a18]"/>
-                  <div>
-                    <p class="text-sm font-['DM_Mono']">Overnight</p>
-                    <p class="text-xs text-[#888] font-['DM_Mono']">Next business day</p>
-                  </div>
-                </div>
-                <span class="text-sm font-['DM_Mono']">$32.00</span>
-              </label>
-            </div>
+          <div class="border-t border-white/10 py-4 text-center text-xs opacity-30 font-['DM_Mono']">© 2025 MONO. All rights reserved.</div>
+        </footer>
+
+      </div>
+    </div>
+
+    <!-- PRODUCT DETAIL -->
+    <div id="page-detail" class="page pt-14">
+      <div class="fade-in max-w-6xl mx-auto px-6 py-10">
+
+        <!-- Breadcrumb + back button -->
+        <div class="flex items-center justify-between mb-8">
+          <div class="flex items-center gap-2 text-xs font-['DM_Mono'] text-[#888]">
+            <button onclick="goTo('home')" class="hover:text-[#1a1a18] transition-colors">Shop</button>
+            <span>/</span>
+            <span id="detail-category" class="uppercase"></span>
+            <span>/</span>
+            <span id="detail-breadcrumb" class="text-[#1a1a18]"></span>
           </div>
-          <button onclick="goToStep(2)" class="mt-8 w-full btn-primary py-4 text-xs uppercase rounded-sm transition-all hover:opacity-90">Continue to Payment →</button>
+          <button onclick="goTo('home')" class="flex items-center gap-2 text-xs font-['DM_Mono'] uppercase tracking-widest text-[#888] border border-[#e0ddd7] px-4 py-2 rounded-sm hover:border-[#1a1a18] hover:text-[#1a1a18] transition-all duration-200">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to Shop
+          </button>
         </div>
 
-        <!-- Payment step (hidden initially) -->
-        <div id="payment-form" class="hidden">
-          <button onclick="goToStep(1)" class="tag uppercase tracking-widest text-[#888] hover:text-[#1a1a18] flex items-center gap-1 mb-6">← Back</button>
-          <h3 class="text-2xl font-light mb-6">Payment</h3>
+        <div class="grid md:grid-cols-2 gap-12 lg:gap-20">
 
-          <!-- Pay method tabs -->
-          <div class="flex gap-2 mb-6">
-            <button onclick="setPayMethod('card')" id="pm-card" class="flex-1 border border-[#1a1a18] py-2.5 text-xs uppercase tracking-widest font-['DM_Mono'] bg-[#1a1a18] text-[#F5F3EE]">Card</button>
-            <button onclick="setPayMethod('paypal')" id="pm-paypal" class="flex-1 border border-[#e0ddd7] py-2.5 text-xs uppercase tracking-widest font-['DM_Mono'] hover:border-[#1a1a18] transition-colors">PayPal</button>
-            <button onclick="setPayMethod('crypto')" id="pm-crypto" class="flex-1 border border-[#e0ddd7] py-2.5 text-xs uppercase tracking-widest font-['DM_Mono'] hover:border-[#1a1a18] transition-colors">Crypto</button>
-          </div>
-
-          <div id="card-fields" class="space-y-4">
-            <div>
-              <label class="tag uppercase tracking-widest text-[#888] block mb-2">Cardholder name</label>
-              <input type="text" placeholder="As on card" class="w-full border border-[#e0ddd7] bg-transparent px-4 py-3 text-sm font-['DM_Mono'] rounded-sm placeholder-[#bbb]"/>
+          <!-- Images -->
+          <div class="space-y-3">
+            <div class="aspect-[3/4] bg-[#E8E5DE] overflow-hidden rounded-sm">
+              <img id="detail-main-img" class="w-full h-full object-cover product-img" alt="Product"/>
             </div>
-            <div>
-              <label class="tag uppercase tracking-widest text-[#888] block mb-2">Card number</label>
-              <div class="relative">
-                <input type="text" placeholder="0000 0000 0000 0000" maxlength="19" oninput="formatCard(this)" class="w-full border border-[#e0ddd7] bg-transparent px-4 py-3 text-sm font-['DM_Mono'] rounded-sm placeholder-[#bbb] pr-12"/>
-                <div class="absolute right-4 top-1/2 -translate-y-1/2 flex gap-1">
-                  <div class="w-5 h-3 bg-[#E85B14] rounded-sm opacity-80"></div>
-                  <div class="w-5 h-3 bg-[#F5A623] rounded-sm opacity-60 -ml-2"></div>
-                </div>
-              </div>
-            </div>
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <label class="tag uppercase tracking-widest text-[#888] block mb-2">Expiry</label>
-                <input type="text" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)" class="w-full border border-[#e0ddd7] bg-transparent px-4 py-3 text-sm font-['DM_Mono'] rounded-sm placeholder-[#bbb]"/>
-              </div>
-              <div>
-                <label class="tag uppercase tracking-widest text-[#888] block mb-2">CVV</label>
-                <input type="text" placeholder="•••" maxlength="4" class="w-full border border-[#e0ddd7] bg-transparent px-4 py-3 text-sm font-['DM_Mono'] rounded-sm placeholder-[#bbb]"/>
-              </div>
-            </div>
-          </div>
-          <div id="paypal-fields" class="hidden py-8 text-center border border-[#e0ddd7] rounded-sm">
-            <p class="text-sm font-['DM_Mono'] text-[#555] mb-4">You'll be redirected to PayPal to complete your purchase securely.</p>
-            <div class="inline-flex items-center gap-2 bg-[#003087] text-white px-8 py-3 rounded cursor-pointer hover:opacity-90 transition-opacity">
-              <span class="font-bold tracking-wide text-sm">Pay</span>
-              <span class="font-bold tracking-wide text-[#009CDE] text-sm">Pal</span>
-            </div>
-          </div>
-          <div id="crypto-fields" class="hidden py-8 border border-[#e0ddd7] rounded-sm px-6 space-y-3">
-            <p class="tag uppercase tracking-widest text-[#888]">Select currency</p>
             <div class="grid grid-cols-3 gap-3">
-              <button class="border border-[#1a1a18] py-3 text-xs font-['DM_Mono'] rounded-sm bg-[#1a1a18] text-[#F5F3EE]">BTC</button>
-              <button class="border border-[#e0ddd7] py-3 text-xs font-['DM_Mono'] rounded-sm hover:border-[#1a1a18] transition-colors">ETH</button>
-              <button class="border border-[#e0ddd7] py-3 text-xs font-['DM_Mono'] rounded-sm hover:border-[#1a1a18] transition-colors">USDC</button>
+              <div id="thumb-0" onclick="setThumb(0)" class="aspect-[3/4] bg-[#E8E5DE] overflow-hidden cursor-pointer border-2 border-[#1a1a18] rounded-sm"><img id="detail-thumb-0" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt=""/></div>
+              <div id="thumb-1" onclick="setThumb(1)" class="aspect-[3/4] bg-[#E8E5DE] overflow-hidden cursor-pointer border border-transparent rounded-sm"><img id="detail-thumb-1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt=""/></div>
+              <div id="thumb-2" onclick="setThumb(2)" class="aspect-[3/4] bg-[#E8E5DE] overflow-hidden cursor-pointer border border-transparent rounded-sm"><img id="detail-thumb-2" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt=""/></div>
             </div>
           </div>
 
-          <label class="flex items-start gap-3 mt-6 cursor-pointer">
-            <input type="checkbox" class="mt-0.5 accent-[#1a1a18]"/>
-            <span class="text-xs text-[#555] font-['DM_Mono'] leading-relaxed">Save this card for future purchases</span>
-          </label>
+          <!-- Product info -->
+          <div class="flex flex-col justify-start pt-2">
+            <p id="detail-tag"   class="tag uppercase tracking-[0.25em] text-[#888] mb-2"></p>
+            <h2 id="detail-name" class="text-4xl md:text-5xl font-light leading-tight mb-2"></h2>
+            <p id="detail-price" class="text-2xl font-['DM_Mono'] font-light mb-6"></p>
+            <p id="detail-desc"  class="text-sm text-[#555] leading-relaxed font-['DM_Mono'] mb-8 border-l-2 border-[#e0ddd7] pl-4"></p>
 
-          <button onclick="goToStep(3)" class="mt-8 w-full btn-primary py-4 text-xs uppercase rounded-sm transition-all hover:opacity-90">Review Order →</button>
-        </div>
+            <!-- Color swatches -->
+            <div class="mb-6">
+              <p class="tag uppercase tracking-widest text-[#888] mb-3">Color — <span id="selected-color" class="text-[#1a1a18]"></span></p>
+              <div id="color-swatches" class="flex gap-3"></div>
+            </div>
 
-        <!-- Review step (hidden initially) -->
-        <div id="review-form" class="hidden">
-          <button onclick="goToStep(2)" class="tag uppercase tracking-widest text-[#888] hover:text-[#1a1a18] flex items-center gap-1 mb-6">← Back</button>
-          <h3 class="text-2xl font-light mb-6">Review order</h3>
-          <div class="space-y-4 mb-6">
-            <div class="flex justify-between py-3 border-b border-[#e0ddd7]">
-              <span class="tag uppercase tracking-widest text-[#888]">Ship to</span>
-              <span class="text-sm font-['DM_Mono'] text-right">123 Main St, New York<br>NY 10001, US</span>
+            <!-- Sizes -->
+            <div class="mb-8">
+              <div class="flex justify-between items-center mb-3">
+                <p class="tag uppercase tracking-widest text-[#888]">Size</p>
+                <button class="tag uppercase tracking-widest text-[#888] underline hover:text-[#1a1a18]">Size Guide</button>
+              </div>
+              <div id="size-buttons" class="flex gap-2 flex-wrap"></div>
             </div>
-            <div class="flex justify-between py-3 border-b border-[#e0ddd7]">
-              <span class="tag uppercase tracking-widest text-[#888]">Method</span>
-              <span class="text-sm font-['DM_Mono']">Standard — $8.00</span>
-            </div>
-            <div class="flex justify-between py-3 border-b border-[#e0ddd7]">
-              <span class="tag uppercase tracking-widest text-[#888]">Payment</span>
-              <span class="text-sm font-['DM_Mono']">•••• •••• •••• 4242</span>
-            </div>
-          </div>
 
-          <div class="bg-[#F0EDE6] rounded-sm p-5 mb-8">
-            <p class="tag uppercase tracking-[0.2em] text-[#888] mb-3">In your bag</p>
-            <div id="review-items" class="space-y-3"></div>
-          </div>
-
-          <button onclick="placeOrder()" class="w-full bg-[#2a2925] text-[#F5F3EE] py-4 text-xs uppercase tracking-widest font-['DM_Mono'] rounded-sm hover:bg-[#1a1a18] transition-colors">Place Order</button>
-          <p class="text-center text-xs text-[#888] mt-3 font-['DM_Mono']">By placing your order you agree to our <a class="underline cursor-pointer">Terms</a> and <a class="underline cursor-pointer">Privacy Policy</a>.</p>
-        </div>
-
-        <!-- Success -->
-        <div id="success-screen" class="hidden text-center py-16">
-          <div class="w-16 h-16 rounded-full border-2 border-[#1a1a18] flex items-center justify-center mx-auto mb-6">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <h3 class="text-3xl font-light mb-3">Order Confirmed</h3>
-          <p class="text-sm text-[#888] font-['DM_Mono'] mb-2">Order #MN-2025-8471</p>
-          <p class="text-sm text-[#555] font-['DM_Mono'] mb-8">We'll send a confirmation to your email.</p>
-          <button onclick="goTo('home')" class="btn-outline px-10 py-3 text-xs uppercase rounded-sm transition-all">Continue Shopping</button>
-        </div>
-      </div>
-
-      <!-- Right: Summary -->
-      <div class="md:col-span-2">
-        <div class="sticky top-24 bg-[#F0EDE6] rounded-sm p-6">
-          <p class="tag uppercase tracking-[0.2em] text-[#888] mb-5">Order summary</p>
-          <div id="cart-items-summary" class="space-y-4 mb-5"></div>
-          <div class="border-t border-[#d8d5ce] pt-4 space-y-2">
-            <div class="flex justify-between text-sm font-['DM_Mono']">
-              <span class="text-[#888]">Subtotal</span>
-              <span id="subtotal-val">$0.00</span>
+            <!-- Qty + Add to Bag -->
+            <div class="flex gap-3 mb-6">
+              <div class="flex items-center border border-[#1a1a18] rounded-sm">
+                <button onclick="changeQty(-1)" class="px-4 py-3 text-lg hover:bg-[#1a1a18] hover:text-[#F5F3EE] transition-colors">−</button>
+                <span id="qty-display" class="px-5 text-sm font-['DM_Mono']">1</span>
+                <button onclick="changeQty(1)"  class="px-4 py-3 text-lg hover:bg-[#1a1a18] hover:text-[#F5F3EE] transition-colors">+</button>
+              </div>
+              <button onclick="addToCart()" class="flex-1 btn-primary py-3 text-xs uppercase transition-all hover:opacity-90 rounded-sm">Add to Bag</button>
             </div>
-            <div class="flex justify-between text-sm font-['DM_Mono']">
-              <span class="text-[#888]">Shipping</span>
-              <span>$8.00</span>
-            </div>
-            <div class="flex justify-between text-sm font-['DM_Mono']">
-              <span class="text-[#888]">Tax (8%)</span>
-              <span id="tax-val">$0.00</span>
-            </div>
-          </div>
-          <div class="border-t border-[#d8d5ce] mt-4 pt-4 flex justify-between">
-            <span class="font-['Cormorant_Garamond'] text-xl font-light">Total</span>
-            <span id="total-val" class="font-['DM_Mono'] text-xl">$0.00</span>
-          </div>
-          <div class="mt-5 pt-4 border-t border-[#d8d5ce]">
-            <div class="flex gap-2">
-              <input type="text" placeholder="Promo code" class="flex-1 border border-[#d8d5ce] bg-transparent px-3 py-2 text-xs font-['DM_Mono'] rounded-sm placeholder-[#bbb]"/>
-              <button class="border border-[#1a1a18] px-4 py-2 text-xs uppercase tracking-widest font-['DM_Mono'] hover:bg-[#1a1a18] hover:text-[#F5F3EE] transition-colors rounded-sm">Apply</button>
+
+            <!-- Buy Now → payment.html -->
+            <button onclick="buyNow()" class="w-full btn-outline py-3 text-xs uppercase transition-all rounded-sm">Buy Now</button>
+
+            <!-- Product meta -->
+            <div class="mt-10 pt-8 border-t border-[#e0ddd7] grid grid-cols-3 gap-4 text-center">
+              <div><p class="tag uppercase tracking-wider text-[#888] mb-1">Material</p><p id="detail-material" class="text-xs font-['DM_Mono']"></p></div>
+              <div><p class="tag uppercase tracking-wider text-[#888] mb-1">Origin</p>  <p id="detail-origin"   class="text-xs font-['DM_Mono']"></p></div>
+              <div><p class="tag uppercase tracking-wider text-[#888] mb-1">Care</p>    <p id="detail-care"     class="text-xs font-['DM_Mono']"></p></div>
             </div>
           </div>
         </div>
+
+        <!-- Related products -->
+        <div class="mt-20">
+          <p class="tag uppercase tracking-[0.25em] text-[#888] mb-6">You may also like</p>
+          <div id="related-grid" class="grid grid-cols-2 md:grid-cols-4 gap-5"></div>
+        </div>
+
       </div>
     </div>
-  </div>
-</div>
 
-<!-- Toast -->
-<div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#1a1a18] text-[#F5F3EE] px-6 py-3 text-xs uppercase tracking-widest font-['DM_Mono'] rounded-sm opacity-0 transition-opacity duration-300 z-50 pointer-events-none">Added to bag</div>
+    <!-- SHOPPING BAG DRAWER -->
+    <div id="bag-overlay" onclick="closeBag()" class="fixed inset-0 bg-black/40 z-[60] opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
-<script>
-const products = [
-  { id:1, name:"Overshirt No. 3", price:148, category:"apparel", tag:"New", desc:"A relaxed silhouette in certified organic cotton. Designed to be worn open over a tee or buttoned through. Two chest pockets with clean flap details.", colors:["#C5B8A8","#2a2925","#7B8B72"], sizes:["XS","S","M","L","XL"], material:"100% Organic Cotton", origin:"Portugal", care:"Cold wash", images:["https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80","https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80","https://images.unsplash.com/photo-1594938298603-c8148c4b4545?w=600&q=80"] },
-  { id:2, name:"Merino Turtleneck", price:112, category:"apparel", tag:"", desc:"Ultra-fine 18.5 micron merino wool for all-day comfort. Naturally temperature-regulating, odour-resistant. Slim fit through the torso.", colors:["#E8E0D4","#1a1a18","#8B6F47"], sizes:["XS","S","M","L","XL"], material:"100% Merino Wool", origin:"Italy", care:"Hand wash", images:["https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80","https://images.unsplash.com/photo-1618354691438-25bc04584c23?w=600&q=80","https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&q=80"] },
-  { id:3, name:"Linen Wide Trousers", price:168, category:"apparel", tag:"Bestseller", desc:"Woven from medium-weight European linen. An easy pull-on waist with side seam pockets. The wide leg drapes beautifully from hip to ankle.", colors:["#D4C4A8","#888880","#2a2925"], sizes:["XS","S","M","L","XL"], material:"100% European Linen", origin:"Lithuania", care:"Cool wash", images:["https://images.unsplash.com/photo-1594938298603-c8148c4b4545?w=600&q=80","https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80","https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80"] },
-  { id:4, name:"Leather Card Holder", price:68, category:"accessories", tag:"", desc:"Vegetable-tanned full-grain leather. Holds 6 cards with a central slot for folded notes. Ages beautifully with use.", colors:["#8B6F47","#1a1a18","#C5B8A8"], sizes:["One Size"], material:"Full-grain Leather", origin:"Spain", care:"Leather conditioner", images:["https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&q=80","https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80","https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80"] },
-  { id:5, name:"Canvas Tote", price:54, category:"accessories", tag:"", desc:"Heavy 16oz waxed canvas with leather-tipped handles. An internal zip pocket and two open slip pockets. Built to last decades.", colors:["#2a2925","#C5B8A8","#7B8B72"], sizes:["One Size"], material:"16oz Waxed Canvas", origin:"UK", care:"Wipe clean", images:["https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80","https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80","https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&q=80"] },
-  { id:6, name:"Ceramic Mug", price:42, category:"home", tag:"", desc:"Hand-thrown stoneware fired at 1280°C. A thick wall keeps drinks warmer for longer. Slight variations in glaze are part of the process.", colors:["#E8E0D4","#7B8B72","#8B6F47"], sizes:["One Size"], material:"Stoneware", origin:"Japan", care:"Dishwasher safe", images:["https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600&q=80","https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80","https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80"] },
-  { id:7, name:"Linen Pillow Cover", price:58, category:"home", tag:"", desc:"Stone-washed Belgian linen that softens with every wash. Hidden zip closure. Sold as single covers; inserts sold separately.", colors:["#E8E0D4","#C5B8A8","#7B8B72","#2a2925"], sizes:["45×45","50×50","60×60"], material:"Belgian Linen", origin:"Belgium", care:"Machine wash cold", images:["https://images.unsplash.com/photo-1584100936595-09ac19b49b30?w=600&q=80","https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80","https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80"] },
-  { id:8, name:"Wool Throw", price:196, category:"home", tag:"Limited", desc:"Double-weave pure new wool from Shetland sheep. A generous 140×200cm. Warm enough as a light blanket, beautiful as decor.", colors:["#C5B8A8","#2a2925","#8B6F47"], sizes:["140×200"], material:"Pure Shetland Wool", origin:"Scotland", care:"Dry clean", images:["https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80","https://images.unsplash.com/photo-1584100936595-09ac19b49b30?w=600&q=80","https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80"] },
-];
+    <div id="bag-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#F5F3EE] z-[70] translate-x-full flex flex-col" style="font-family:'DM Mono',monospace;">
 
-let cart = [];
-let currentProduct = null;
-let selectedColor = 0;
-let selectedSize = 0;
-let qty = 1;
-let currentStep = 1;
-let currentFilter = 'all';
-
-function goTo(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + page).classList.add('active');
-  window.scrollTo({top:0, behavior:'smooth'});
-  if(page === 'payment') renderCartSummary();
-}
-
-function scrollToProducts() {
-  document.getElementById('products-grid').scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-function filterProducts(cat) {
-  currentFilter = cat;
-  ['all','apparel','accessories','home'].forEach(c => {
-    const el = document.getElementById('filter-' + c);
-    if(c === cat) { el.classList.add('border-b-2','border-[#1a1a18]'); el.classList.remove('text-[#888]'); }
-    else { el.classList.remove('border-b-2','border-[#1a1a18]'); el.classList.add('text-[#888]'); }
-  });
-  renderProducts();
-}
-
-function renderProducts() {
-  const grid = document.getElementById('products-grid');
-  const filtered = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
-  grid.innerHTML = filtered.map(p => `
-    <div class="product-card cursor-pointer group" onclick="openProduct(${p.id})">
-      <div class="aspect-[3/4] bg-[#E8E5DE] overflow-hidden mb-3 rounded-sm relative">
-        <img src="${p.images[0]}" alt="${p.name}" class="product-img w-full h-full object-cover"/>
-        ${p.tag ? `<span class="absolute top-3 left-3 tag uppercase tracking-widest bg-[#1a1a18] text-[#F5F3EE] px-2 py-1">${p.tag}</span>` : ''}
+      <!-- Drawer header -->
+      <div class="flex items-center justify-between px-6 py-5 border-b border-[#e0ddd7] flex-shrink-0">
+        <div class="flex items-center gap-3">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;letter-spacing:0.05em;margin:0;">Your Bag</h2>
+          <span id="bag-count-label" class="text-[9px] tracking-widest uppercase bg-[#1a1a18] text-[#F5F3EE] rounded-full px-2 py-0.5">0 items</span>
+        </div>
+        <button onclick="closeBag()" title="Close" class="w-9 h-9 flex items-center justify-center border border-[#e0ddd7] rounded-sm hover:border-[#1a1a18] hover:bg-[#1a1a18] hover:text-[#F5F3EE] transition-all duration-200">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
-      <div class="flex justify-between items-start">
+
+      <!-- Empty state -->
+      <div id="bag-empty" class="flex-1 flex flex-col items-center justify-center gap-5 px-6 text-center">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1">
+          <path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
         <div>
-          <p class="text-sm font-['Cormorant_Garamond'] text-lg leading-tight group-hover:opacity-70 transition-opacity">${p.name}</p>
-          <p class="tag uppercase tracking-widest text-[#888] mt-0.5">${p.category}</p>
+          <p style="font-size:16px;font-family:'Cormorant Garamond',serif;font-weight:300;margin:0 0 4px;">Your bag is empty</p>
+          <p style="font-size:11px;color:#999;letter-spacing:0.05em;margin:0;">Add something beautiful</p>
         </div>
-        <p class="text-sm font-['DM_Mono'] whitespace-nowrap ml-2">$${p.price}</p>
+        <button onclick="closeBag()" class="btn-outline px-8 py-3 text-xs uppercase rounded-sm">Continue Shopping</button>
+      </div>
+
+      <!-- Items list -->
+      <div id="bag-items" class="flex-1 overflow-y-auto px-6 py-2 hidden"></div>
+
+      <!-- Drawer footer -->
+      <div id="bag-footer" class="hidden border-t border-[#e0ddd7] px-6 pt-5 pb-6 space-y-4 bg-[#F5F3EE] flex-shrink-0">
+        <div class="flex gap-2">
+          <input id="bag-promo" type="text" placeholder="Promo code" class="flex-1 border border-[#e0ddd7] bg-transparent px-4 py-2.5 text-xs font-['DM_Mono'] rounded-sm placeholder-[#bbb]" onfocus="this.style.borderColor='#1a1a18'" onblur="this.style.borderColor='#e0ddd7'"/>
+          <button onclick="applyBagPromo()" class="btn-outline px-4 py-2.5 text-xs uppercase rounded-sm">Apply</button>
+        </div>
+        <div id="bag-promo-msg" class="hidden text-xs font-['DM_Mono']"></div>
+        <div class="space-y-2">
+          <div class="flex justify-between text-xs font-['DM_Mono'] text-[#888]"><span>Subtotal</span><span id="bag-subtotal">$0.00</span></div>
+          <div class="flex justify-between text-xs font-['DM_Mono'] text-[#888]"><span>Shipping</span><span id="bag-shipping-cost">Calculated at checkout</span></div>
+          <div id="bag-discount-row" class="flex justify-between text-xs font-['DM_Mono'] text-[#7B8B72] hidden"><span>Discount</span><span id="bag-discount-val">−$0.00</span></div>
+        </div>
+        <div class="flex justify-between items-baseline border-t border-[#e0ddd7] pt-4">
+          <span class="font-['Cormorant_Garamond'] text-xl font-light">Total</span>
+          <span id="bag-total" class="text-lg font-['DM_Mono']">$0.00</span>
+        </div>
+        <button onclick="bagGoCheckout()" class="btn-primary w-full py-4 text-xs uppercase rounded-sm">Proceed to Checkout →</button>
+        <p class="text-center text-[10px] text-[#aaa] tracking-wider font-['DM_Mono']">Free shipping on orders over $150</p>
       </div>
     </div>
-  `).join('');
-}
 
-function openProduct(id) {
-  currentProduct = products.find(p => p.id === id);
-  selectedColor = 0;
-  selectedSize = 0;
-  qty = 1;
-  renderDetail();
-  goTo('detail');
-}
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#1a1a18] text-[#F5F3EE] px-6 py-3 text-xs uppercase tracking-widest font-['DM_Mono'] rounded-sm opacity-0 transition-opacity duration-300 z-[80] pointer-events-none"></div>
 
-function renderDetail() {
-  const p = currentProduct;
-  document.getElementById('detail-name').textContent = p.name;
-  document.getElementById('detail-price').textContent = '$' + p.price;
-  document.getElementById('detail-tag').textContent = p.category;
-  document.getElementById('detail-breadcrumb').textContent = p.name;
-  document.getElementById('detail-category').textContent = p.category;
-  document.getElementById('detail-desc').textContent = p.desc;
-  document.getElementById('detail-material').textContent = p.material;
-  document.getElementById('detail-origin').textContent = p.origin;
-  document.getElementById('detail-care').textContent = p.care;
-  document.getElementById('detail-main-img').src = p.images[0];
-  p.images.forEach((img,i) => { const el = document.getElementById('detail-thumb-' + i); if(el) el.src = img; });
-  document.getElementById('qty-display').textContent = qty;
-  // Swatches
-  const sw = document.getElementById('color-swatches');
-  sw.innerHTML = p.colors.map((c,i) => `<div class="swatch ${i===0?'selected':''}" style="background:${c}" onclick="selectColor(${i})"></div>`).join('');
-  document.getElementById('selected-color').textContent = colorName(p.colors[selectedColor]);
-  // Sizes
-  const sb = document.getElementById('size-buttons');
-  sb.innerHTML = p.sizes.map((s,i) => `<button class="size-btn border border-[#e0ddd7] px-3 py-1.5 text-xs font-['DM_Mono'] hover:border-[#1a1a18] transition-colors rounded-sm ${i===0?'selected':''}" onclick="selectSize(${i})">${s}</button>`).join('');
-  // Related
-  const related = products.filter(pr => pr.id !== p.id && pr.category === p.category).slice(0,4);
-  document.getElementById('related-grid').innerHTML = related.map(pr => `
-    <div class="cursor-pointer group" onclick="openProduct(${pr.id})">
-      <div class="aspect-[3/4] bg-[#E8E5DE] overflow-hidden mb-2 rounded-sm"><img src="${pr.images[0]}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${pr.name}"/></div>
-      <p class="text-sm font-['Cormorant_Garamond'] text-base group-hover:opacity-70 transition-opacity">${pr.name}</p>
-      <p class="text-xs font-['DM_Mono'] text-[#888]">$${pr.price}</p>
-    </div>
-  `).join('');
-}
+    <!-- SCRIPTS -->
+    <script src="assets/products.js"></script>
+    <script src="assets/store.js"></script>
+    <script>
+      // ── Page state ──
+      let currentProduct = null;
+      let selectedColor  = 0;
+      let selectedSize   = 0;
+      let qty            = 1;
+      let currentFilter  = "all";
 
-function colorName(hex) {
-  const names = {'#C5B8A8':'Sand','#2a2925':'Ebony','#7B8B72':'Sage','#E8E0D4':'Ecru','#1a1a18':'Black','#8B6F47':'Tobacco','#D4C4A8':'Oat','#888880':'Slate','#E8E5DE':'Natural'};
-  return names[hex] || hex;
-}
+      // ── SPA routing ──
+      function goTo(page) {
+        document.querySelectorAll(".page").forEach((p) => p.classList.remove("active"));
+        document.getElementById("page-" + page).classList.add("active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
 
-function selectColor(i) {
-  selectedColor = i;
-  document.querySelectorAll('.swatch').forEach((s,j) => s.classList.toggle('selected', j===i));
-  document.getElementById('selected-color').textContent = colorName(currentProduct.colors[i]);
-}
+      function scrollToProducts() {
+        document.getElementById("products-grid").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
 
-function selectSize(i) {
-  selectedSize = i;
-  document.querySelectorAll('.size-btn').forEach((b,j) => b.classList.toggle('selected', j===i));
-}
+      // ── Filter ──
+      function filterProducts(cat) {
+        currentFilter = cat;
+        ["all", "apparel", "accessories", "home"].forEach((c) => {
+          const el = document.getElementById("filter-" + c);
+          if (c === cat) { el.classList.add("border-b-2", "border-[#1a1a18]"); el.classList.remove("text-[#888]"); }
+          else           { el.classList.remove("border-b-2", "border-[#1a1a18]"); el.classList.add("text-[#888]"); }
+        });
+        renderProducts();
+      }
 
-function setThumb(i) {
-  document.getElementById('detail-main-img').src = currentProduct.images[i];
-  [0,1,2].forEach(j => {
-    const t = document.getElementById('thumb-' + j);
-    t.className = t.className.replace(/border-2 border-\[#1a1a18\]/,'').replace(/border border-transparent/,'');
-    t.className += j===i ? ' border-2 border-[#1a1a18]' : ' border border-transparent';
-  });
-}
+      // ── Render product grid ──
+      function renderProducts() {
+        const filtered = currentFilter === "all" ? products : products.filter((p) => p.category === currentFilter);
+        document.getElementById("products-grid").innerHTML = filtered.map((p) => `
+          <div class="product-card cursor-pointer group" onclick="openProduct(${p.id})">
+            <div class="aspect-[3/4] bg-[#E8E5DE] overflow-hidden mb-3 rounded-sm relative">
+              <img src="${p.images[0]}" alt="${p.name}" class="product-img w-full h-full object-cover"/>
+              ${p.tag ? `<span class="absolute top-3 left-3 tag uppercase tracking-widest bg-[#1a1a18] text-[#F5F3EE] px-2 py-1">${p.tag}</span>` : ""}
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <p class="font-['Cormorant_Garamond'] text-lg leading-tight group-hover:opacity-70 transition-opacity">${p.name}</p>
+                <p class="tag uppercase tracking-widest text-[#888] mt-0.5">${p.category}</p>
+              </div>
+              <p class="text-sm font-['DM_Mono'] whitespace-nowrap ml-2">$${p.price}</p>
+            </div>
+          </div>
+        `).join("");
+      }
 
-function changeQty(delta) {
-  qty = Math.max(1, qty + delta);
-  document.getElementById('qty-display').textContent = qty;
-}
+      // ── Open product detail ──
+      function openProduct(id) {
+        currentProduct = products.find((p) => p.id === id);
+        selectedColor = 0;
+        selectedSize  = 0;
+        qty = 1;
+        renderDetail();
+        goTo("detail");
+      }
 
-function addToCart() {
-  if(!currentProduct) return;
-  const existing = cart.find(i => i.id === currentProduct.id && i.size === currentProduct.sizes[selectedSize] && i.color === currentProduct.colors[selectedColor]);
-  if(existing) { existing.qty += qty; }
-  else { cart.push({ id: currentProduct.id, name: currentProduct.name, price: currentProduct.price, size: currentProduct.sizes[selectedSize], color: currentProduct.colors[selectedColor], image: currentProduct.images[0], qty }); }
-  updateCartCount();
-  showToast('Added to bag');
-}
+      function renderDetail() {
+        const p = currentProduct;
+        document.getElementById("detail-name").textContent     = p.name;
+        document.getElementById("detail-price").textContent    = "$" + p.price;
+        document.getElementById("detail-tag").textContent      = p.category;
+        document.getElementById("detail-breadcrumb").textContent = p.name;
+        document.getElementById("detail-category").textContent = p.category;
+        document.getElementById("detail-desc").textContent     = p.desc;
+        document.getElementById("detail-material").textContent = p.material;
+        document.getElementById("detail-origin").textContent   = p.origin;
+        document.getElementById("detail-care").textContent     = p.care;
+        document.getElementById("detail-main-img").src         = p.images[0];
+        document.getElementById("qty-display").textContent     = qty;
 
-function goToPayment() {
-  addToCart();
-  goTo('payment');
-}
+        p.images.forEach((img, i) => { const el = document.getElementById("detail-thumb-" + i); if (el) el.src = img; });
 
-function updateCartCount() {
-  const total = cart.reduce((s,i) => s + i.qty, 0);
-  document.getElementById('cart-count').textContent = total;
-}
+        // Color swatches
+        document.getElementById("color-swatches").innerHTML = p.colors.map((c, i) =>
+          `<div class="swatch ${i === 0 ? "selected" : ""}" style="background:${c}" onclick="selectColor(${i})"></div>`
+        ).join("");
+        document.getElementById("selected-color").textContent = colorName(p.colors[0]);
 
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.style.opacity = 1;
-  setTimeout(() => t.style.opacity = 0, 2000);
-}
+        // Size buttons
+        document.getElementById("size-buttons").innerHTML = p.sizes.map((s, i) =>
+          `<button class="size-btn border border-[#e0ddd7] px-3 py-1.5 text-xs font-['DM_Mono'] hover:border-[#1a1a18] transition-colors rounded-sm ${i === 0 ? "selected" : ""}" onclick="selectSize(${i})">${s}</button>`
+        ).join("");
 
-function renderCartSummary() {
-  const items = cart.length ? cart : [{ name: currentProduct?.name || 'Sample Item', price: currentProduct?.price || 148, size: 'M', color: '#C5B8A8', image: currentProduct?.images[0] || products[0].images[0], qty: 1 }];
-  const subtotal = items.reduce((s,i) => s + i.price * i.qty, 0);
-  const tax = subtotal * 0.08;
-  const total = subtotal + 8 + tax;
-  document.getElementById('subtotal-val').textContent = '$' + subtotal.toFixed(2);
-  document.getElementById('tax-val').textContent = '$' + tax.toFixed(2);
-  document.getElementById('total-val').textContent = '$' + total.toFixed(2);
-  document.getElementById('cart-items-summary').innerHTML = items.map(i => `
-    <div class="flex gap-3 items-start">
-      <div class="w-14 h-18 rounded-sm overflow-hidden flex-shrink-0 bg-[#E8E5DE]"><img src="${i.image}" class="w-14 h-full object-cover" style="height:72px"/></div>
-      <div class="flex-1 min-w-0">
-        <p class="text-sm font-['Cormorant_Garamond'] text-base leading-tight">${i.name}</p>
-        <p class="text-xs font-['DM_Mono'] text-[#888] mt-0.5">${i.size} · <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${i.color};vertical-align:middle;margin-right:2px"></span></p>
-        <div class="flex justify-between mt-1">
-          <span class="text-xs font-['DM_Mono'] text-[#888]">Qty ${i.qty}</span>
-          <span class="text-xs font-['DM_Mono']">$${(i.price * i.qty).toFixed(2)}</span>
-        </div>
-      </div>
-    </div>
-  `).join('');
-  document.getElementById('review-items').innerHTML = document.getElementById('cart-items-summary').innerHTML;
-}
+        // Related
+        const related = products.filter((pr) => pr.id !== p.id && pr.category === p.category).slice(0, 4);
+        document.getElementById("related-grid").innerHTML = related.map((pr) => `
+          <div class="cursor-pointer group" onclick="openProduct(${pr.id})">
+            <div class="aspect-[3/4] bg-[#E8E5DE] overflow-hidden mb-2 rounded-sm">
+              <img src="${pr.images[0]}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${pr.name}"/>
+            </div>
+            <p class="font-['Cormorant_Garamond'] text-base group-hover:opacity-70 transition-opacity">${pr.name}</p>
+            <p class="text-xs font-['DM_Mono'] text-[#888]">$${pr.price}</p>
+          </div>
+        `).join("");
+      }
 
-function goToStep(step) {
-  currentStep = step;
-  ['shipping-form','payment-form','review-form'].forEach((id,i) => {
-    document.getElementById(id).classList.toggle('hidden', i !== step-1);
-  });
-  [1,2,3].forEach(s => {
-    const el = document.getElementById('step-' + s);
-    el.classList.toggle('step-active', s === step);
-    el.classList.toggle('step-done', s < step);
-    el.classList.toggle('text-[#888]', s > step);
-  });
-  window.scrollTo({top:0, behavior:'smooth'});
-}
+      function selectColor(i) {
+        selectedColor = i;
+        document.querySelectorAll(".swatch").forEach((s, j) => s.classList.toggle("selected", j === i));
+        document.getElementById("selected-color").textContent = colorName(currentProduct.colors[i]);
+      }
 
-function setPayMethod(method) {
-  ['card','paypal','crypto'].forEach(m => {
-    const btn = document.getElementById('pm-' + m);
-    const fields = document.getElementById(m + '-fields');
-    if(m === method) { btn.classList.add('bg-[#1a1a18]','text-[#F5F3EE]'); btn.classList.remove('border-[#e0ddd7]'); fields.classList.remove('hidden'); }
-    else { btn.classList.remove('bg-[#1a1a18]','text-[#F5F3EE]'); btn.classList.add('border-[#e0ddd7]'); fields.classList.add('hidden'); }
-  });
-}
+      function selectSize(i) {
+        selectedSize = i;
+        document.querySelectorAll(".size-btn").forEach((b, j) => b.classList.toggle("selected", j === i));
+      }
 
-function formatCard(el) {
-  let v = el.value.replace(/\D/g,'').substring(0,16);
-  el.value = v.replace(/(.{4})/g,'$1 ').trim();
-}
+      function setThumb(i) {
+        document.getElementById("detail-main-img").src = currentProduct.images[i];
+        [0, 1, 2].forEach((j) => {
+          const t = document.getElementById("thumb-" + j);
+          t.className = t.className.replace(/border-2 border-\[#1a1a18\]/, "").replace(/border border-transparent/, "");
+          t.className += j === i ? " border-2 border-[#1a1a18]" : " border border-transparent";
+        });
+      }
 
-function formatExpiry(el) {
-  let v = el.value.replace(/\D/g,'');
-  if(v.length >= 2) v = v.substring(0,2) + ' / ' + v.substring(2,4);
-  el.value = v;
-}
+      function changeQty(delta) {
+        qty = Math.max(1, qty + delta);
+        document.getElementById("qty-display").textContent = qty;
+      }
 
-function placeOrder() {
-  cart = [];
-  updateCartCount();
-  ['shipping-form','payment-form','review-form'].forEach(id => document.getElementById(id).classList.add('hidden'));
-  document.getElementById('success-screen').classList.remove('hidden');
-  window.scrollTo({top:0, behavior:'smooth'});
-}
+      // ── Add to Bag (toast only, no drawer) ──
+      function addToCart() {
+        if (!currentProduct) return;
+        pushToCart(currentProduct, currentProduct.sizes[selectedSize], currentProduct.colors[selectedColor], qty);
+        showToast("Added to bag ✓");
+      }
 
-// Init
-renderProducts();
-</script>
-</body>
+      // ── Buy Now → go straight to payment ──
+      function buyNow() {
+        if (!currentProduct) return;
+        pushToCart(currentProduct, currentProduct.sizes[selectedSize], currentProduct.colors[selectedColor], qty);
+        window.location.href = "payment.html";
+      }
+
+      // ── Init ──
+      renderProducts();
+    </script>
+  </body>
 </html>
