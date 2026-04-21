@@ -9,8 +9,8 @@
 const products = [
   {
     id: 1,
-    name: "Overshirt No. 3",
-    price: 148,
+    name: "Shirt",
+    price: 30,
     category: "apparel",
     tag: "New",
     desc: "A relaxed silhouette in certified organic cotton. Designed to be worn open over a tee or buttoned through. Two chest pockets with clean flap details.",
@@ -27,8 +27,8 @@ const products = [
   },
   {
     id: 2,
-    name: "Merino Turtleneck",
-    price: 112,
+    name: "T-shirt",
+    price: 25,
     category: "apparel",
     tag: "",
     desc: "Ultra-fine 18.5 micron merino wool for all-day comfort. Naturally temperature-regulating, odour-resistant. Slim fit through the torso.",
@@ -45,8 +45,8 @@ const products = [
   },
   {
     id: 3,
-    name: "Linen Wide Trousers",
-    price: 168,
+    name: "Trousers",
+    price: 20,
     category: "apparel",
     tag: "Bestseller",
     desc: "Woven from medium-weight European linen. An easy pull-on waist with side seam pockets. The wide leg drapes beautifully from hip to ankle.",
@@ -63,8 +63,8 @@ const products = [
   },
   {
     id: 4,
-    name: "Leather Card Holder",
-    price: 68,
+    name: "Wallet",
+    price: 30,
     category: "accessories",
     tag: "",
     desc: "Vegetable-tanned full-grain leather. Holds 6 cards with a central slot for folded notes. Ages beautifully with use.",
@@ -81,8 +81,8 @@ const products = [
   },
   {
     id: 5,
-    name: "Canvas Tote",
-    price: 54,
+    name: "Bag",
+    price: 50,
     category: "accessories",
     tag: "",
     desc: "Heavy 16oz waxed canvas with leather-tipped handles. An internal zip pocket and two open slip pockets. Built to last decades.",
@@ -99,8 +99,8 @@ const products = [
   },
   {
     id: 6,
-    name: "Ceramic Mug",
-    price: 42,
+    name: "Mug",
+    price: 15,
     category: "home",
     tag: "",
     desc: "Hand-thrown stoneware fired at 1280°C. A thick wall keeps drinks warmer for longer. Slight variations in glaze are part of the process.",
@@ -117,8 +117,8 @@ const products = [
   },
   {
     id: 7,
-    name: "Linen Pillow Cover",
-    price: 58,
+    name: "Pillow",
+    price: 23,
     category: "home",
     tag: "",
     desc: "Stone-washed Belgian linen that softens with every wash. Hidden zip closure. Sold as single covers; inserts sold separately.",
@@ -135,8 +135,8 @@ const products = [
   },
   {
     id: 8,
-    name: "Wool Throw",
-    price: 196,
+    name: "Wool",
+    price: 50,
     category: "home",
     tag: "Limited",
     desc: "Double-weave pure new wool from Shetland sheep. A generous 140×200cm. Warm enough as a light blanket, beautiful as decor.",
